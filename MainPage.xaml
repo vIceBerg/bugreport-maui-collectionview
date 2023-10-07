@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:local="clr-namespace:maui_empty_datatemplate_problem"
+             x:Class="maui_empty_datatemplate_problem.MainPage">
+	<StackLayout>
+		<VerticalStackLayout Padding="20" Spacing="20">
+			<HorizontalStackLayout Spacing="20">
+				<Switch IsToggled="{Binding AddEmptyNameFirst }" />
+				<Label Text="Add empty name first" />
+			</HorizontalStackLayout>
+			<HorizontalStackLayout Spacing="20">
+				<Switch IsToggled="{Binding HideCollectionWhileLoading}" />
+				<Label Text="Hide collection while loading" />
+			</HorizontalStackLayout>
+		</VerticalStackLayout>
+		<Button Command="{Binding RefreshCommand}" Text="Refresh" />
+		<ActivityIndicator
+			IsVisible="{Binding IsLoading}"
+			IsRunning="true" />
+		<CollectionView
+			IsVisible="{Binding CanShow}"
+			ItemsSource="{Binding FilteredItems}"
+			SelectionMode="Single">
+			<CollectionView.ItemTemplate>
+				<DataTemplate>
+					<Label Text="{Binding Name}"/>
+				</DataTemplate>
+			</CollectionView.ItemTemplate>
+		</CollectionView>
+	</StackLayout>
+</ContentPage>
